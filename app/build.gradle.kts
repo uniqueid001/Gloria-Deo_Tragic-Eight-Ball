@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    kotlin("android")
     }
 
 android {
@@ -31,7 +31,16 @@ android {
     kotlinOptions {
         jvmTarget = "11"
         }
-    }
+
+    sourceSets {
+        getByName("main") {
+            java {
+                // Add this directory to the defaults
+                srcDir("src/main/kotlin")
+                }
+            } // main
+        } // sourceSets
+    } // android
 
 dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
