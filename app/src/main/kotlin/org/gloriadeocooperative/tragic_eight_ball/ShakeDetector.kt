@@ -1,9 +1,13 @@
 package org.gloriadeocooperative.tragic_eight_ball
 
+import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 
 import kotlin.math.sqrt
 
@@ -68,3 +72,44 @@ class ShakeDetector(private val mListener: OnShakeListener) : SensorEventListene
         private const val SHAKE_COUNT_RESET_TIME_MS = 3000
         } // companion object
     } // class ShakeDetector
+
+
+class LifecycleAwareShakeDetector(
+        owner: LifecycleOwner,
+        private val context: Context,
+        listener: ShakeDetector.OnShakeListener
+        ): DefaultLifecycleObserver
+    {
+    private val lifecycle: Lifecycle
+    private val shakeDetector: ShakeDetector
+    private lateinit var mSensorManager: SensorManager
+    private lateinit var mAccelerometer: Sensor
+
+    init
+        {
+        this.shakeDetector = ShakeDetector(listener)
+        this.lifecycle = owner.getLifecycle()
+        this.lifecycle.addObserver(this);
+        }
+
+    override fun onCreate(owner:LifecycleOwner)
+        {
+//        this.mSensorManager = this.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        this.mSensorManager = this.context.getSystemService(SensorManager::class.java)
+        this.mAccelerometer = this.mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        }
+
+    override fun onResume(owner:LifecycleOwner)
+        {
+        this.mSensorManager.registerListener(this.shakeDetector,
+                                             this.mAccelerometer,
+                                             SensorManager.SENSOR_DELAY_UI)
+        }
+
+    override fun onPause(owner: LifecycleOwner)
+        {
+        this.mSensorManager.unregisterListener(this.shakeDetector)
+        }
+
+    } // class LifecycleAwareShakeDetector
+
