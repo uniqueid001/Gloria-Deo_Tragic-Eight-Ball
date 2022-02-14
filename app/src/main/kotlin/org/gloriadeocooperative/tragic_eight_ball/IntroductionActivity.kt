@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class IntroductionActivity : AppCompatActivity()
     {
-    private lateinit var mShakeDetector: LifecycleAwareShakeDetector
+    private lateinit var mShakeDetector: ShakeDetector
 
     override fun onCreate(savedInstanceState: Bundle?)
         {
@@ -15,7 +15,7 @@ class IntroductionActivity : AppCompatActivity()
         setContentView(R.layout.activity_introduction)
 
         // ShakeDetector initialization
-        this.mShakeDetector = LifecycleAwareShakeDetector(this, this, this::handleShakeEvent)
+        this.mShakeDetector = ShakeDetector(this, this, this::handleShakeEvent)
         } // onCreate()
 
     fun handleShakeEvent(count: Int)
