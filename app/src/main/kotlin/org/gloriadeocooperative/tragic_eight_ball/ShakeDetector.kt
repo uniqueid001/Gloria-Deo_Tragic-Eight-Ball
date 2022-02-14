@@ -6,7 +6,6 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 
 import kotlin.math.sqrt
@@ -25,17 +24,29 @@ class ShakeDetector(
         fun onShake(count: Int)
         }
 
+    private val lifecyleObserver = object: DefaultLifecycleObserver
+        {
+        override fun onCreate(owner:LifecycleOwner) { this@ShakeDetector.onCreate() }
+        override fun onResume(owner:LifecycleOwner) { this@ShakeDetector.onResume() }
+        override fun onPause(owner: LifecycleOwner) { this@ShakeDetector.onPause() }
+        } // LifecycleObserver
+
     private val sensorEventListener = object: SensorEventListener
         {
+        override fun onSensorChanged(event: SensorEvent) { this@ShakeDetector.onSensorChanged(event) }
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) { }
+        } // SensorEventListener
+
+    init
+        {
+        owner.getLifecycle().addObserver(this.lifecyleObserver)
+        }
+
+
     private var mShakeTimestamp: Long = 0
     private var mShakeCount = 0
 
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int)
-        {
-        // ignore
-        }
-
-    override fun onSensorChanged(event: SensorEvent)
+    private fun onSensorChanged(event: SensorEvent)
         {
         val x = event.values[0]
         val y = event.values[1]
@@ -62,7 +73,6 @@ class ShakeDetector(
             mListener.onShake(mShakeCount)
             }
         } // onSensorChanged()
-        } // SensorEventListener
 
     companion object
         {
@@ -78,34 +88,26 @@ class ShakeDetector(
         private const val SHAKE_COUNT_RESET_TIME_MS = 3000
         } // companion object
 
-    private val lifecyleObserver = object: DefaultLifecycleObserver
-        {
+
     private lateinit var mSensorManager: SensorManager
     private lateinit var mAccelerometer: Sensor
 
-    override fun onCreate(owner:LifecycleOwner)
+    private fun onCreate()
         {
         this.mSensorManager = this@ShakeDetector.context.getSystemService(SensorManager::class.java)
         this.mAccelerometer = this.mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         }
 
-    override fun onResume(owner:LifecycleOwner)
+    private fun onResume()
         {
         this.mSensorManager.registerListener(this@ShakeDetector.sensorEventListener,
                                              this.mAccelerometer,
                                              SensorManager.SENSOR_DELAY_UI)
         }
 
-    override fun onPause(owner: LifecycleOwner)
+    private fun onPause()
         {
         this.mSensorManager.unregisterListener(this@ShakeDetector.sensorEventListener)
-        }
-        } // LifecycleObserver
-
-
-    init
-        {
-        owner.getLifecycle().addObserver(this.lifecyleObserver)
         }
 
     } // class ShakeDetector
