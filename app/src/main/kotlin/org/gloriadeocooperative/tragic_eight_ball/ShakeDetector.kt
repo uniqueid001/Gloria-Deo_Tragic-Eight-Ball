@@ -16,7 +16,7 @@ class ShakeDetector(private val mListener: OnShakeListener) : SensorEventListene
     private var mShakeTimestamp: Long = 0
     private var mShakeCount = 0
 
-    interface OnShakeListener
+    fun interface OnShakeListener
         {
         fun onShake(count: Int)
         }

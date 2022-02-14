@@ -23,14 +23,7 @@ class IntroductionActivity : AppCompatActivity()
 //            this.mSensorManager = this.getSystemService(Context.SENSOR_SERVICE) as SensorManager
             this.mSensorManager = this.getSystemService(SensorManager::class.java)
             this.mAccelerometer = this.mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-            this.mShakeDetector = ShakeDetector(
-                object : OnShakeListener
-                    {
-                    override fun onShake(count: Int)
-                        {
-                        handleShakeEvent(count)
-                        }
-                   })
+            this.mShakeDetector = ShakeDetector( this::handleShakeEvent )
         } // onCreate()
 
         override fun onResume()
