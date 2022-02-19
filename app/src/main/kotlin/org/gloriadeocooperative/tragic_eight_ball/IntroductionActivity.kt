@@ -25,7 +25,10 @@ class IntroductionActivity : AppCompatActivity()
         // Create a demonstration/proof-of-concept ShakeDetector that simply
         // displays when a shake was detected.
         this.shakeDetector = ShakeDetector(this, this,
-                    { count -> Toast.makeText(this, "Shake detected ${count}", Toast.LENGTH_SHORT).show() } )
+                    { count ->
+                        Toast.makeText(this, "Shake detected ${count}", Toast.LENGTH_SHORT).show()
+                        viewBinding.centralTextView.setText( "Detected ${count} shakes in a row" )
+                    } )
         } // onCreate()
 
     } // class
