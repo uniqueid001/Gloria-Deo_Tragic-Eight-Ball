@@ -27,7 +27,7 @@ class IntroductionActivity : AppCompatActivity()
         this.shakeDetector = ShakeDetector(this, this,
                     { count ->
                         Toast.makeText(this, "Shake detected ${count}", Toast.LENGTH_SHORT).show()
-                        viewBinding.centralTextView.setText( "Detected ${count} shakes in a row" )
+//                        viewBinding.centralTextView.setText( "Detected ${count} shakes in a row" )
                     } )
         } // onCreate()
 
