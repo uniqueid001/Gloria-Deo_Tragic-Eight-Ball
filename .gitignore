@@ -14,4 +14,11 @@
 .cxx
 local.properties
 
-/.idea/
+# Don't exclude all files so that modified inspection profiles can be shared
+#/.idea/
+/.idea/.gitignore
+/.idea/.name
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/vcs.xml
