@@ -17,6 +17,12 @@
             android:name=".AnswerDisplayActivity"
             android:exported="false" />
         <activity
+            android:name=".ThinkingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AskQuestion2"
+            android:exported="false" />
+        <activity
             android:name=".UserAnswersActivity"
             android:exported="false" />
         <activity
