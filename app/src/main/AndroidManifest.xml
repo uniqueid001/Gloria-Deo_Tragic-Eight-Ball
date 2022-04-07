@@ -18,7 +18,9 @@
             android:exported="false" />
         <activity
             android:name=".ThinkingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/title_activity_thinking"
+            android:theme="@style/Theme.TragicEightBall.NoActionBar" />
         <activity
             android:name=".AskQuestion2"
             android:exported="false" />
