@@ -5,76 +5,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AnswerDisplayActivity"
-    android:background="@drawable/eightball_background"
-
-
+    android:background="@drawable/eight_ball_background"
 >
 
-    <TextView
-        android:id="@+id/textView6"
+    <ImageView
+        android:id="@+id/OuterCircle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QuestionBox"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/eight_ball_outer_circle2" />
+
+    <ImageView
+        android:id="@+id/InerCircle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/OuterCircle"
+        app:layout_constraintEnd_toEndOf="@+id/OuterCircle"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/OuterCircle"
+        app:layout_constraintTop_toTopOf="@+id/OuterCircle"
+        app:layout_constraintVertical_bias="0.587"
+        app:srcCompat="@drawable/inner_circle_2" />
+
+    <ImageView
+        android:id="@+id/Triangle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/InerCircle"
+        app:layout_constraintEnd_toEndOf="@+id/InerCircle"
+        app:layout_constraintStart_toStartOf="@+id/InerCircle"
+        app:layout_constraintTop_toTopOf="@+id/InerCircle"
+        app:layout_constraintVertical_bias="0.471"
+        app:srcCompat="@drawable/triangle_answer_window" />
+
+    <ImageView
+        android:id="@+id/QuestionBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/eightball_outer_circle"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.414" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/eightball_answer_window"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/eightball_answer_triangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.615" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/eightball_question_box"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.122"
+        app:srcCompat="@drawable/eight_ball_question_box" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="@+id/Triangle"
+        app:layout_constraintEnd_toEndOf="@+id/Triangle"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Triangle"
+        app:layout_constraintTop_toTopOf="@+id/Triangle"
+        app:layout_constraintVertical_bias="0.615" />
+
+    <TextView
+        android:id="@+id/Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
