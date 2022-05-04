@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -34,10 +35,10 @@ class ThinkingActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycleScope.launchWhenResumed {
             println("Hello World")
-            delay(1000)
-            startActivity( Intent(this@ThinkingActivity, AnswerDisplayActivity::class.java) )
+            delay(5000)
+            println("Now what?")
         }
     }
 
