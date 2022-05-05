@@ -21,8 +21,6 @@ class AskQuestion2 : AppCompatActivity() {
         this.binding = ActivityAskQuestion2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //this.setSupportActionBar(binding.toolbar2)
-
         // Create a demonstration/proof-of-concept ShakeDetector that simply
         // displays when a shake was detected.
         this.shakeDetector = ShakeDetector(this, this) {
