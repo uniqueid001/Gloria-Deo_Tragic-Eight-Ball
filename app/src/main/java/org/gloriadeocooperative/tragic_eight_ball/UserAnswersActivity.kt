@@ -34,28 +34,7 @@ class UserAnswersActivity : AppCompatActivity() {
         // Should go into main activity. New answer activity will assume it's built...
         val categoryPref = getSharedPreferences("categories", Context.MODE_PRIVATE)
 
-        if (!categoryPref.contains("sassy")) {
 
-            with(categoryPref.edit()) {
-                putString("1", "sassy")
-                putString("2", "tragic")
-                apply()
-            }
-            val sassyPref = getSharedPreferences("sassy", Context.MODE_PRIVATE)
-            with(sassyPref.edit()) {
-                putString("1", "Try learning English and ask again")
-                putString("2", "Yeah baby!")
-                putString("3", "Yeah no")
-                apply()
-            }
-            val tragicPref = getSharedPreferences("tragic", Context.MODE_PRIVATE)
-            with(tragicPref.edit()) {
-                putString("1", "What is the point, ask again")
-                putString("2", "I mean anything is possible")
-                putString("3", "Sorry buddy")
-                apply()
-            }
-        }
         save.setOnClickListener {
             var catName = binding.CatName.text.toString().replace(" ", "")
             var ans1 = binding.UserAnswer1.text
@@ -67,7 +46,9 @@ class UserAnswersActivity : AppCompatActivity() {
             var ans7 = binding.UserAnswer7.text
             var ans8 = binding.UserAnswer8.text
             var userPrefName: String? = catName
-            val categoryPref = getSharedPreferences("categories", Context.MODE_PRIVATE)
+
+            val categoryPref = TragicEightBallApplication.instance.answerSetDAO.loadCategories()
+
             val userPref = getSharedPreferences("$userPrefName", Context.MODE_PRIVATE)
             with(userPref.edit()) {
                 putString("1", "$ans1")
@@ -80,6 +61,7 @@ class UserAnswersActivity : AppCompatActivity() {
                 putString("8", "$ans8")
                 apply()
             }
+
             with(categoryPref.edit()){
                 // will figure out the proper key count
                 val sharedPreferenceIds = categoryPref.all.map { it.key } //returns List<String>

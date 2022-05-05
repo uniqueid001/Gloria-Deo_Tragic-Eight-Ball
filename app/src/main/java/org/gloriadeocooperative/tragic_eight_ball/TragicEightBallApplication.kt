@@ -4,16 +4,18 @@ import android.app.Application
 
 class TragicEightBallApplication: Application()
     {
+    val answerSetDAO by lazy { AnswerSetDAO(applicationContext) }
 
     override fun onCreate()
         {
         super.onCreate()
-        initializeBuiltInAnswerSets()
+        instance = this
+        answerSetDAO.initializeBuiltInAnswerSets()
         } // onCreate()
 
-    private fun initializeBuiltInAnswerSets()
-        {
-        println("TODO")
-        }
+    companion object {
+        lateinit var instance: TragicEightBallApplication
+            private set
 
+        } // companion object
     } // class
