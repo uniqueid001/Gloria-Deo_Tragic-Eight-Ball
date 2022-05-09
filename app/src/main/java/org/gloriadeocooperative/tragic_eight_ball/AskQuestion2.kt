@@ -24,10 +24,13 @@ class AskQuestion2 : AppCompatActivity() {
         // Create a demonstration/proof-of-concept ShakeDetector that simply
         // displays when a shake was detected.
         this.shakeDetector = ShakeDetector(this, this) {
-            val theQuestion = binding.inputTextView.text
-            val intent = Intent(this@AskQuestion2, ThinkingActivity::class.java)
-            intent.putExtra("question", theQuestion)
 
+            val theQuestion = binding.inputTextView.text
+            val answerSetName = intent.getStringExtra(EXTRA_ANSWERSET)
+
+            val intent = Intent(this@AskQuestion2, ThinkingActivity::class.java)
+            intent.putExtra(EXTRA_QUESTION,theQuestion)
+            intent.putExtra(EXTRA_ANSWERSET,answerSetName)
             if (theQuestion.length > 0) {
                 startActivity(intent)
             } else {
