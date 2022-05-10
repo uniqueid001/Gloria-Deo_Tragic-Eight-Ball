@@ -17,6 +17,9 @@
         <activity
             android:name=".AnswerDisplayActivity"
             android:exported="false" />
+         <activity
+            android:name=".thinking2_activity"
+            android:exported="false" />
         <activity
             android:name=".ThinkingActivity"
             android:exported="false"
