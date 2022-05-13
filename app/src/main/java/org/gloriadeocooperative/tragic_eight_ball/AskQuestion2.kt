@@ -28,7 +28,7 @@ class AskQuestion2 : AppCompatActivity() {
             val theQuestion = binding.inputTextView.text
             val answerSetName = intent.getStringExtra(EXTRA_ANSWERSET)
 
-            val intent = Intent(this@AskQuestion2, ThinkingActivity::class.java)
+            val intent = Intent(this@AskQuestion2, thinking2_activity::class.java)
             intent.putExtra(EXTRA_QUESTION,theQuestion)
             intent.putExtra(EXTRA_ANSWERSET,answerSetName)
             if (theQuestion.length > 0) {
