@@ -27,6 +27,7 @@ class IntroductionActivity : AppCompatActivity()
         val playButton: Button = findViewById(R.id.PlayButton)
         playButton.setOnClickListener {
             val intent: Intent = Intent(this, AskQuestion2::class.java)
+            intent.putExtra(EXTRA_ANSWERSET, "tragic")
             this.startActivity(intent)
             }
 
